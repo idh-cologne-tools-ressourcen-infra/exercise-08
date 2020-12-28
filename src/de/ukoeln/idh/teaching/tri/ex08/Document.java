@@ -41,4 +41,5 @@ public class Document {
 	public void setTokens(List<Token> tokens) {
 		this.tokens = tokens;
 	}
+
 }

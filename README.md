@@ -17,10 +17,9 @@ Change the `Token` class such that it also able to store information from a
 dependency parse. Add code to the main method so that each token *also* gets dependency information. Verify that the methods `getGovernor()` and `getRelation()` in `Token` also return the correct result.
 
 ## Step 4
+Add a class `NamedEntity` that stored named entity information in this sentence. Next to the tokens that make up the named entity, we also want to store it's type (e.g., person) and, if the named entity has been recognized automatically, the confidence that the named entity recognizer reports.
 
 
-
-
-## Step 4
+## Step 5
 
 Commit your program to the repository and push it to the repository.
