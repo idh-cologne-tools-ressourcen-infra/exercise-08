@@ -19,7 +19,34 @@ dependency parse. Add code to the main method so that each token *also* gets dep
 ## Step 4
 Add a class `NamedEntity` that stored named entity information in this sentence. Next to the tokens that make up the named entity, we also want to store it's type (e.g., person) and, if the named entity has been recognized automatically, the confidence that the named entity recognizer reports.
 
+## Step 5 (optional)
 
-## Step 5
+Add a class `Tree`, following the examples in the slides. Test your code by producing a simple syntactic tree in code. Implement a function called `toString()`. The function returns a string that contains a human-readable tree representation. The tree structure can be produced by indentation:
+
+```
+- is
+  - dog 
+    - the
+  - fed
+    - by
+      - Parker
+        - Mr. 
+        - who
+          - wears
+            - hat
+              - a
+              - yellow
+```
+
+or parentheses:
+ 
+
+```
+( is ( dog ( the ) ) ( fed ( by ( Parker ( Mr. ) ( who ( wears ( hat ( a ) ( yellow ) ) ) ) ) ) ) ) 
+```
+
+Hints: Since trees are recursive structures, your function needs to be recursive as well.
+
+## Step 6
 
 Commit your program to the repository and push it to the repository.
