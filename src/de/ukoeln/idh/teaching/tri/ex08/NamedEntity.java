@@ -1,44 +1,15 @@
-package de.ukoeln.idh.teaching.tri.ex08;
-
-import java.util.List;
-
 public class NamedEntity {
+	private Map<String, List<Token>> namedEntities = new HashMap<String, List<Token>>();
+	private List<Token> nameEntityTokens = new ArrayList<Token>();
 
-
-
-	private long confidence;
-	private List<Token> tokens;
-	private String type;
-
-	NamedEntity(List<Token> tokens,String type,long confidence){
-		setTokens(tokens);
-		setType(type);
-		setConfidence(confidence);
+	public void saveNamedEntityTokens(Token token) {
+		nameEntityTokens.add(token);
 	}
 
-	public long getConfidence() {
-		return confidence;
+	public void saveNamedEntity() {
+		namedEntities.put("person", nameEntityTokens);
 	}
 
-	public void setConfidence(long confidence) {
-		this.confidence = confidence;
+	public Map<String, List<Token>> getNamedEntities() {
+		return namedEntities;
 	}
-
-	public List<Token> getTokens() {
-		return tokens;
-	}
-
-	public void setTokens(List<Token> tokens) {
-		this.tokens = tokens;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-
-}
