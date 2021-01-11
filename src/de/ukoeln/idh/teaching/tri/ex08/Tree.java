@@ -3,6 +3,9 @@ package de.ukoeln.idh.teaching.tri.ex08;
 import java.util.Map;
 import java.util.TreeMap;
 
+//try but don´t understand how to do it, know that my try is not the right thin to do
+
+
 public class Tree extends Document{
 	public static void main(String[] args) {
 		
