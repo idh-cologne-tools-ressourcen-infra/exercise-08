@@ -3,21 +3,29 @@ package de.ukoeln.idh.teaching.tri.ex08;
 public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
+	int dependency;
 
-	public Token(Document document, int begin, int end, String pos, String lemma) {
+	public Token(Document document, int begin, int end, String pos, String lemma, int dependency) {
 		super(document, begin, end);
 		this.pos = pos;
 		this.lemma = lemma;
+		this.dependency = dependency;
 	}
 
 	public Token getGovernor() {
 		// TODO: Implement me (step 3)
-		return null;
+		// return the governor (head) of the phrase
+		if(this.dependency < 0) {
+			return null;
+		}
+		return document.getTokens().get(dependency);
+
 	}
 
 	public String getRelation() {
 		// TODO: Implement me (step 3)
-		return null;
+		// return PoS
+		return getPos();
 	}
 
 	@Override
