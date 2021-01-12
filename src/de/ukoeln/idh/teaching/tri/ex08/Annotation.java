@@ -1,56 +1,24 @@
-package de.ukoeln.idh.teaching.tri.ex08;
-
-public abstract class Annotation {
-	int begin = -1, end = -1;
-	Document document = null;
-
-	/**
-	 * @return the begin
-	 */
-	public int getBegin() {
-		return begin;
-	}
-
-	/**
-	 * @param begin the begin to set
-	 */
-	public void setBegin(int begin) {
-		this.begin = begin;
-	}
-
-	/**
-	 * @return the end
-	 */
-	public int getEnd() {
-		return end;
-	}
-
-	/**
-	 * @param end the end to set
-	 */
-	public void setEnd(int end) {
-		this.end = end;
-	}
-
-	/**
-	 * @return the document
-	 */
-	public Document getDocument() {
-		return document;
-	}
-
-	/**
-	 * @param document the document to set
-	 */
-	public void setDocument(Document document) {
-		this.document = document;
-	}
-
-	public Annotation(Document document, int begin, int end) {
-		super();
-		this.begin = begin;
-		this.end = end;
-		this.document = document;
-	}
-
+package de.ukoeln.idh.teaching.tri.ex08;  
+  
+import java.util.ArrayList;  
+import java.util.HashMap;  
+import java.util.List;  
+import java.util.Map;  
+  
+public class NamedEntity {  
+	private Map<String, List<Token>> namedEntities = new HashMap<String, List<Token>>();  
+	private List<Token> nameEntityTokens = new ArrayList<Token>();  
+	  
+	public void saveNamedEntityTokens(Token token) {  
+		nameEntityTokens.add(token);  
+	}  
+	  
+	public void saveNamedEntity() {  
+		namedEntities.put("person", nameEntityTokens);  
+	}  
+	  
+	public Map<String, List<Token>> getNamedEntities() {  
+		return namedEntities;  
+	}  
+	  
 }
