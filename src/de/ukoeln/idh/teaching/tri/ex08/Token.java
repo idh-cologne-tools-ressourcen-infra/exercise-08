@@ -3,32 +3,32 @@ package de.ukoeln.idh.teaching.tri.ex08;
 public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
-	int relate = 0;
-	String dp = null;
-
-	public Token(Document document, int begin, int end, String pos, String lemma, int relate, String dp) {
-		super(document, begin, end);
-		this.pos = pos;
-		this.lemma = lemma;
-		this.relate = relate;
-		this.dp = dp;
-	}
+	Token gov = null;
+	String rel = null;
+	
+	public Token(Document document, int begin, int end, String pos, String lemma) {
+        super(document, begin, end);
+        this.pos = pos;
+        this.lemma = lemma;
+    }
 
 	public Token getGovernor() {
-		// TODO: Implement me (step 3)
-		if (relate < 0) {
-			return null;
-		}
-		return document.getTokens().get(relate);
+		return gov;
 	}
 
 	public String getRelation() {
-		return getPos();
+		return rel;
 	}
 
+	public void setGov(Token gov, String rel) {
+		this.gov = gov;
+		this.rel = rel;
+	}
+	
 	@Override
 	public String toString() {
-		return getDocument().getText().substring(getBegin(), getEnd());
+	return getDocument().getText().substring(getBegin(), getEnd());
+
 	}
 
 	public String getPos() {
