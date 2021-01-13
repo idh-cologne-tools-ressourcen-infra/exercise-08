@@ -3,6 +3,8 @@ package de.ukoeln.idh.teaching.tri.ex08;
 public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
+	String relation = null;
+	Token governor = null;
 
 	public Token(Document document, int begin, int end, String pos, String lemma) {
 		super(document, begin, end);
@@ -11,13 +13,11 @@ public class Token extends Annotation {
 	}
 
 	public Token getGovernor() {
-		// TODO: Implement me (step 3)
-		return null;
+		return governor;
 	}
 
 	public String getRelation() {
-		// TODO: Implement me (step 3)
-		return null;
+		return relation;
 	}
 
 	@Override
@@ -39,6 +39,20 @@ public class Token extends Annotation {
 
 	public void setLemma(String lemma) {
 		this.lemma = lemma;
+	}
+
+	/**
+	 * @param relation the relation to set
+	 */
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
+	/**
+	 * @param governor the governor to set
+	 */
+	public void setGovernor(Token governor) {
+		this.governor = governor;
 	}
 
 }
