@@ -7,9 +7,7 @@ public abstract class Annotation {
 	/**
 	 * @return the begin
 	 */
-	public int getBegin() {
-		return begin;
-	}
+	public int getBegin() { return begin; }
 
 	/**
 	 * @param begin the begin to set
