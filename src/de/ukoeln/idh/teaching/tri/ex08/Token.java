@@ -3,6 +3,8 @@ package de.ukoeln.idh.teaching.tri.ex08;
 public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
+	Token gov = null;
+	String rel = null;
 
 	public Token(Document document, int begin, int end, String pos, String lemma) {
 		super(document, begin, end);
@@ -11,15 +13,18 @@ public class Token extends Annotation {
 	}
 
 	public Token getGovernor() {
-		// TODO: Implement me (step 3)
-		return null;
+		return gov;
 	}
 
 	public String getRelation() {
-		// TODO: Implement me (step 3)
-		return null;
+		return rel;
 	}
 
+	public void setGov(Token gov, String rel) {
+		this.gov = gov;
+		this.rel = rel;
+	}
+	
 	@Override
 	public String toString() {
 		return getDocument().getText().substring(getBegin(), getEnd());
