@@ -1,11 +1,13 @@
 package de.ukoeln.idh.teaching.tri.ex08;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Document {
 	String text = null;
 	List<Token> tokens = new ArrayList<Token>();
+	List<NamedEntity> namedEntities = new ArrayList<>();
 
 	public static void main(String[] args) {
 		Document document = new Document();
@@ -24,6 +26,27 @@ public class Document {
 		document.getTokens().add(new Token(document, 42, 48, "jj", "yellow"));
 		document.getTokens().add(new Token(document, 49, 52, "nn", "hat"));
 		document.getTokens().add(new Token(document, 52, 53, "punct", "."));
+
+		List<Token> tokensTemp = new ArrayList<Token>();
+		tokensTemp = document.getTokens();
+
+		tokensTemp.set(0, tokensTemp.get(0).setGovRel(tokensTemp.get(1), "det"));
+		tokensTemp.set(1, tokensTemp.get(1).setGovRel(tokensTemp.get(2), "subj"));
+		tokensTemp.set(2, tokensTemp.get(2).setGovRel(null, "root"));
+		tokensTemp.set(3, tokensTemp.get(3).setGovRel(tokensTemp.get(2), "pred"));
+		tokensTemp.set(4, tokensTemp.get(4).setGovRel(tokensTemp.get(3), "prep"));
+		tokensTemp.set(5, tokensTemp.get(5).setGovRel(tokensTemp.get(6), "comp"));
+		tokensTemp.set(6, tokensTemp.get(6).setGovRel(tokensTemp.get(4), "obj"));
+		tokensTemp.set(8, tokensTemp.get(8).setGovRel(tokensTemp.get(6), "appos"));
+		tokensTemp.set(9, tokensTemp.get(9).setGovRel(tokensTemp.get(8), "pred"));
+		tokensTemp.set(10, tokensTemp.get(10).setGovRel(tokensTemp.get(12), "det"));
+		tokensTemp.set(11, tokensTemp.get(11).setGovRel(tokensTemp.get(12), "det"));
+		tokensTemp.set(12, tokensTemp.get(12).setGovRel(tokensTemp.get(9), "obj"));
+		document.setTokens(tokensTemp);
+
+		document.getNamedEntities().add(new NamedEntity(Arrays.asList(document.getTokens().get(5),document.getTokens().get(6)),"person",1));
+
+		document.printTree();
 	}
 
 	public String getText() {
@@ -40,6 +63,58 @@ public class Document {
 
 	public void setTokens(List<Token> tokens) {
 		this.tokens = tokens;
+	}
+
+	public void setNamedEntities(List<NamedEntity> namedEntities) {
+		this.namedEntities = namedEntities;
+	}
+
+	public List<NamedEntity> getNamedEntities(){
+		return namedEntities;
+	}
+
+	public List<Token> getChildren(Token parent){
+		List<Token> tokensTemp = new ArrayList<Token>();
+		for(Token token : this.getTokens()) {
+			if(token.getGovernor()!=null) {
+				if(token.getGovernor().equals(parent)) {
+					tokensTemp.add(token);
+				}
+			}
+		}
+		return tokensTemp;
+	}
+
+	public void printTree() {
+		int i;
+		for(i=0; i<tokens.size();i++) {
+			if(tokens.get(i).getGovernor()==null) {
+				break;
+			}
+		}
+		List<Token> tokensTemp = new ArrayList<Token>();
+		tokensTemp.add(this.getTokens().get(i));
+		this.findChildAndPrint(tokensTemp);
+	}
+	public void findChildAndPrint(List<Token> tokenList) {
+		if(tokenList.isEmpty())return;
+		for(int i = 0; i<this.countParents(tokenList.get(0));i++) {
+			System.out.print("   ");
+		}
+		System.out.print("- ");
+		System.out.println(tokenList.get(0));
+		List<Token> newTokenList = this.getChildren(tokenList.remove(0));
+		newTokenList.addAll(tokenList);
+		findChildAndPrint(newTokenList);
+	}
+	public int countParents(Token child) {
+		int amount = 0;
+		Token parent=child;
+		while(parent.getGovernor()!=null) {
+			amount++;
+			parent = parent.getGovernor();
+		}
+		return amount;
 	}
 
 }
