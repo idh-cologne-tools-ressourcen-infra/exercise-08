@@ -3,6 +3,7 @@ package de.ukoeln.idh.teaching.tri.ex08;
 public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
+	String relation = null;
 
 	public Token(Document document, int begin, int end, String pos, String lemma) {
 		super(document, begin, end);
@@ -16,8 +17,7 @@ public class Token extends Annotation {
 	}
 
 	public String getRelation() {
-		// TODO: Implement me (step 3)
-		return null;
+		return relation;
 	}
 
 	@Override
@@ -40,5 +40,10 @@ public class Token extends Annotation {
 	public void setLemma(String lemma) {
 		this.lemma = lemma;
 	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+	
 
 }
