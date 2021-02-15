@@ -24,6 +24,42 @@ public class Document {
 		document.getTokens().add(new Token(document, 42, 48, "jj", "yellow"));
 		document.getTokens().add(new Token(document, 49, 52, "nn", "hat"));
 		document.getTokens().add(new Token(document, 52, 53, "punct", "."));
+
+		List<Token> ts = document.getTokens();
+		ts.get(0).setGovernor(ts.get(1)); // the
+		ts.get(0).setRelation("det");
+		ts.get(1).setGovernor(ts.get(3)); // dog
+		ts.get(1).setRelation("nsubj");
+		ts.get(2).setGovernor(ts.get(3)); // is
+		ts.get(2).setRelation("cop");
+		ts.get(3).setGovernor(null); // fed
+		ts.get(3).setRelation(null);
+		ts.get(4).setGovernor(ts.get(3)); // by
+		ts.get(4).setRelation("prep");
+		ts.get(5).setGovernor(ts.get(6)); // mr.
+		ts.get(5).setRelation("nn");
+		ts.get(6).setGovernor(ts.get(4)); // parker
+		ts.get(6).setRelation("pobj");
+		ts.get(7).setGovernor(ts.get(3)); // ,
+		ts.get(7).setRelation("advmod");
+		ts.get(8).setGovernor(ts.get(9)); // who
+		ts.get(8).setRelation("nsubj");
+		ts.get(9).setGovernor(ts.get(7)); // wears
+		ts.get(9).setRelation("rcmod");
+		ts.get(10).setGovernor(ts.get(12)); // a
+		ts.get(10).setRelation("dep");
+		ts.get(11).setGovernor(ts.get(12)); // yellow
+		ts.get(11).setRelation("amod");
+		ts.get(12).setGovernor(ts.get(9)); // hat
+		ts.get(12).setRelation("dobj");
+		ts.get(13).setGovernor(ts.get(3)); // .
+		ts.get(13).setRelation("punct");
+		for (int i = 0; i < ts.size(); i++) {
+			System.out.println("token #" + i + " "+ ts.get(i).toString());
+			System.out.println("govenor token #" + i + " "+ ts.get(i).getGovernor());
+			System.out.println("relation token #" + i + " "+ ts.get(i).getRelation());
+			System.out.println("____");
+		}
 	}
 
 	public String getText() {
