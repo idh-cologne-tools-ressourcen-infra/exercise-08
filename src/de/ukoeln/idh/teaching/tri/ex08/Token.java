@@ -4,6 +4,7 @@ public class Token extends Annotation {
 	String pos = null;
 	String lemma = null;
 	String relation = null;
+	Token governor = null;
 
 	public Token(Document document, int begin, int end, String pos, String lemma) {
 		super(document, begin, end);
@@ -12,8 +13,7 @@ public class Token extends Annotation {
 	}
 
 	public Token getGovernor() {
-		// TODO: Implement me (step 3)
-		return null;
+		return governor;
 	}
 
 	public String getRelation() {
@@ -43,6 +43,10 @@ public class Token extends Annotation {
 
 	public void setRelation(String relation) {
 		this.relation = relation;
+	}
+	
+	public void setGovernor(Token governor) {
+		this.governor = governor;
 	}
 	
 
